@@ -160,3 +160,138 @@ guix system init /mnt/etc/config.scm /mnt
 Watch the system download package and install in /mnt
 Reboot
 
+========================================================
+                   crux template
+========================================================
+
+Author: https://github.com/hexparrot/qubes-crux
+
+USING CRUX AS A QUBES VIRTUAL MACHINE
+------------------------------------------
+
+The current steps will help you install CRUX as a TemplateVM in Qubes.
+The following features are currently implemented:
+
+* dom0 I/O and cross-vm copy-paste
+* qvm-* commands
+* mounts private drive (xvdb)
+* working audio
+* ships with Firefox
+* HVM, PVH, PV
+
+Currently not working:
+
+* firewall rules from dom0
+* /rw/config (e.g., rc.local)
+* qubes iptables service
+
+* automatically handle xvd* size changes
+* swap partition (xvdc)
+
+
+INSTALLATION STEPS
+------------------------------------------
+
+General idea:
+
+1) Download the CRUX ISO, and boot a new Qube from the ISO.
+2) Get the internet working on the new qube, then download these helper scripts.
+3) Run the helpers scripts to install CRUX to your permanent system (xvda3),
+build a minimal kernel, and build all Qubes components.
+4) Reboot and test operation.
+5) Clone Standalone to TemplateVM, create AppVM.
+
+Ensure this Qube has enough memory to compile a kernel, e.g., 2048MB.
+You can reduce the usage of the AppVM later.
+
+Specifics:
+
+Start a StandaloneVM (HVM) 'crux', booting with the CRUX ISO.
+Type 'CRUX' to enter the installation environment.
+
+# export IP=10.137.0.x   [get x from Qube Settings:IP]
+# export GW=10.137.0.y   [get y from Qube Settings:Gateway]
+# export DEV=eth0
+
+# ifconfig $DEV up
+# ip route add $GW dev $DEV
+# ip route add default via $GW
+# ip addr add $IP/32 dev $DEV
+# ip link set $DEV up
+
+# echo 'nameserver 10.139.1.1' >> /etc/resolv.conf
+
+# wget --no-check-certificate https://github.com/hexparrot/qubes-crux/tarball/master
+# tar -xf master
+# cd hexparrot*/helpers
+# ./00_full_install
+# reboot
+
+And you're done! It's a working qube, perfect for DispVMs or main use
+by installing additional software using CRUX' ports system. See prt-get.
+
+To turn this StandaloneVM to a Template VM, in dom0:
+
+$ qvm-clone --class TemplateVM crux crux_template
+
+For using PV/PVH mode, in dom0:
+
+$ cd /var/lib/qubes/vm-kernels
+$ qvm-run -p crux 'cat /usr/ports/qubes-crux/helpers/kernel.tar.gz' | tar xzf -
+
+ADDITIONAL NOTES
+------------------------------------------
+
+Be sure to read and review the scripts you are executing!
+
+00_full_install is a convenience script that runs every other script
+in the helpers/ directory: everything from automating the partitioning of xvda
+to copying over system packages, to git-cloning & compiling qubes components.
+
+CRUX requires a custom-built kernel by design at installation-time. 
+A minimal kernel config has been provided here under my authorship.
+It includes everything necessary for audio and video playback in Firefox,
+but there are likely a large number of otherwise useful modules that haven't
+made the cut.
+
+You can easily customize the kernel after the installation is complete,
+or you can do so before the first reboot. Instead of 00_full_install:
+
+...
+# cd hexparrot*/helpers
+# ./10_prepare_disk
+# ./20_install_packages
+# ./30_qubes_config
+# ./manual_kernel_build
+# exit  #[exit the chroot]
+# ./50_qubes_build
+# reboot
+
+If for any reason you want direct access to the chroot, CRUX' ISO provides
+a shortcut that'll handle mounting of the host /dev for you:
+
+# setup-chroot
+
+KNOWN ISSUES
+------------------------------------------
+
+Difficulties with dracut interfering with having full support for xvdc
+(swap) and xvda resizing.
+
+PACKAGING SYSTEM
+------------------------------------------
+
+CRUX uses the ports system, which is a source-based package manager.
+You can see all the qubes-related ports in this repo and all the commands
+used to easily reproduce packages for installation. See the CRUX handbook
+for more details.
+
+This package will soon be versioned for Qubes 4 and modified to work with
+the upcoming Qubes4.1 (which will require new ports altogether).
+
+If anybody has any expertise in the qubes-builder system, your help would
+be absolutely invaluable.
+
+To help or if you have any other questions, don't hesitate to email me:
+wdchromium at gmail dot com
+
