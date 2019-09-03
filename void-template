@@ -19,6 +19,9 @@ upgrade to latest
 5. sudo xbps-pkgdb -m hold linux linux-headers
 6. sudo xbps-pkgdb -m repolock linux4.18 linux-headers4.18
 7. sudo xbps-install -Su (full system upgrade)
+8. sudo vim /etc/locale.conf 
+   sudo xbps-reconfigure -f glibc-locales
+
 
 linux 5.1.12_1 
 bash 5.0.9(1)
