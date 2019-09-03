@@ -1,6 +1,14 @@
-**prepare**
+; prepare build machine
 
-sudo dnf install git createrepo rpm-build make wget rpmdevtools dialog rpm-sign gnupg dpkg-dev debootstrap python2-sh perl-Digest-MD5 perl-Digest-SHA
+qvm-clone fedora-30 qubes-builder
+qvm-run -a qubes-builder gnome-terminal
+sudo dnf install git createrepo rpm-build make wget rpmdevtools dialog 
+rpm-sign gnupg dpkg-dev debootstrap python2-sh perl-Digest-MD5 perl-Digest-SHA
+
+qvm-create --class AppVM --label blue --property virt_mode=pvh builder
+qvm-volume extend builder:private 30g
+
+qvm-run -a builder gnome-terminal
 wget https://keys.qubes-os.org/keys/qubes-master-signing-key.asc
 gpg --import qubes-master-signing-key.asc 
 gpg --edit-key 36879494
@@ -16,6 +24,10 @@ cd qubes-builder
 git tag -v `git describe`
 mkdir -p keyrings/git
 cp ~/.gnupg/pubring.gpg ~/.gnupg/trustdb.gpg keyrings/git
+
+===========================================================
+                    xenial template
+===========================================================
 ./setup
 Yes
 Yes
@@ -28,6 +40,10 @@ Select only xenial
 make install-deps
 make get-sources
 make qubes-vm
+
+============================================================
+                    archlinux template
+============================================================
 
 Archlinux template seems to be fully working and building completely but 
 requires minor changes: 
@@ -75,8 +91,9 @@ and that would be it. Builds.
 The qubes repository with archlinux binaries has its pgp signature expired 
 for over 2 months so Qubes- stuff does not upgrade from within template. 
 
-
---
+===============================================================
+                        centos template
+===============================================================
 
 qubes-builder with master (4.1) branch sources successfully builds 
 templates for centos 7 standard / minimal and qubuntu xenial, they work 
