@@ -1,4 +1,4 @@
-prepare
+**prepare**
 
 sudo dnf install git createrepo rpm-build make wget rpmdevtools dialog rpm-sign gnupg dpkg-dev debootstrap python2-sh perl-Digest-MD5 perl-Digest-SHA
 wget https://keys.qubes-os.org/keys/qubes-master-signing-key.asc
