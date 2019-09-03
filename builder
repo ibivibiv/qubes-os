@@ -1,4 +1,6 @@
-; prepare build machine
+================================================
+          prepare build machine
+================================================
 
 qvm-clone fedora-30 qubes-builder
 qvm-run -a qubes-builder gnome-terminal
