@@ -1,0 +1,97 @@
+! URxvt.font: xft:IBMPlexMono:pixelsize=12
+! URxvt.font: xft:Iosevka Nerd Font:style=light:pixelsize=12
+
+URxvt.font: xft:Dina:style=semibold:pixelsize=12
+
+! XFT - Settings
+     
+Xft.antialias:  true 
+Xft.autohint:   false 
+Xft.dpi:        96
+Xft.hinting:    true 
+Xft.hintstyle:  hintfull 
+Xft.lcdfilter:  lcddefault
+Xft.rgba:       rgb
+
+
+! URXVT - Settings
+
+URxvt*depth:                        32
+URxvt*internalBorder:               3
+URxvt*dynamicColors:                on
+URxvt*urgentOnBell:                 true
+URxvt*borderLess:                   false
+URxvt*scrollBar:                    false
+URxvt*cursorBlink:                  true
+URxvt*cursorUnderline:              true
+URxvt*cursorColor:                  #737077
+URxvt*scrollColor:                  #151515
+URxvt*underlineURLs:                true
+URxvt.geometry: 		    100x25
+
+! Man pages colors
+
+*VT100.colorBDMode:                  true
+*VT100.colorBD:                      red
+*VT100.colorULMode:                  true
+*VT100.colorUL:                      cyan   
+*VT100.veryBoldColors:               6
+
+
+!-*- Perl extensions -*-
+
+URxvt.perl-ext-common: default,selection-to-clipboard,pasta,matcher,keyboard-select
+URxvt.keysym.M-u:     perl:url-select:select_next
+URxvt.url-launcher:   /usr/bin/chromium
+URxvt.underlineURLs:  True
+URxvt.matcher.button: 1
+URxvt.keysym.M-Escape:perl:keyboard-select:activate
+URxvt.keysym.Control-Shift-V:     perl:pasta:paste
+URxvt.keysym.Shift-Control-C: perl:clipboard:copy
+URxvt.keysym.Shift-Control-V: perl:clipboard:paste
+
+
+! Material theme
+
+! theme https://www.colorspire.com/
+! material color: https://material.io/inline-tools/color/
+! material: https://material.io/tools/color 
+
+! Bg !
+
+! Grey bg (dark to light)
+! no place but used by tmux and awesome #0a0a10
+*background:   #181b22
+*color0:       #272f3b
+*color8:       #394353
+
+! Primary bg (dark to light)
+*color6:       #47534e
+*color2:       #576760
+*color14:      #677b72
+
+! Secondary bg (dark to light)
+*color5:       #7b8046
+*color4:       #95a754
+*color13:      #a3be5c
+
+! Error bg (dark to light)
+*color1:       #af9a5e
+*color9:       #c5b063
+*color3:       #dac56a
+
+! Text !
+
+! Text Grey
+*foreground:   #a4a4a9
+
+! Text Primary (normal - focus)
+*color10:      #a0afa8
+*color7:       #bdc6c2
+
+! Text Secondary (normal - focus)
+*color12:      #cff096
+*color15:      #dbf5b2
+
+! Text Error
+*color11:      #dbf5b2
