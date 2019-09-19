@@ -4,14 +4,15 @@
 
 repository=https://a-hel-fi.m.voidlinux.org/current/
 
-/usr/share/xbps.d/00-a-repository-qubes-conf
+> /usr/share/xbps.d/00-a-repository-qubes-conf
 
 repository=http://void.coldbyte.net/qubes/
 
-xbps-query -Rs fon
-xbps-install -Su
-xbps-reconfigure
-upgrade to latest
+> xbps-query -Rs fon
+> xbps-install -Su
+> xbps-reconfigure
+
+##### upgrade to latest linux 5.1.12_1 and bash 5.0.9(1)
 
 1. sudo xbps-install -S ca-certificates
 2. sudo xbps-install -f glib
@@ -26,8 +27,3 @@ upgrade to latest
 7. sudo xbps-install -Su (full system upgrade)
 8. sudo vim /etc/locale.conf 
    sudo xbps-reconfigure -f glibc-locales
-
-
-linux 5.1.12_1 
-bash 5.0.9(1)
-
