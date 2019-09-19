@@ -1,4 +1,4 @@
-##### This my Qubes-OS repository
+##### This is my Qubes-OS repository
 
 Just trying to build all-in-one OS.
 
