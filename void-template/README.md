@@ -1,6 +1,11 @@
+#####Some preworking operations
+
 /usr/share/xbps.d/00-repository-main-conf
+
 repository=https://a-hel-fi.m.voidlinux.org/current/
+
 /usr/share/xbps.d/00-a-repository-qubes-conf
+
 repository=http://void.coldbyte.net/qubes/
 
 xbps-query -Rs fon
