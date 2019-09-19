@@ -1,6 +1,6 @@
-#####Some preworking operations
+##### Some preworking operations
 
-/usr/share/xbps.d/00-repository-main-conf
+> /usr/share/xbps.d/00-repository-main-conf
 
 repository=https://a-hel-fi.m.voidlinux.org/current/
 
