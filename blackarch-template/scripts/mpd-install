@@ -1,0 +1,37 @@
+#!/bin/zsh -i
+
+RED='\033[0;31m'
+NC='\033[0m'
+
+echo -e "${RED}Mpd installing and configuring${NC}..."
+sleep 10
+mkc () {
+	mkdir -p "$@" && cd "$@"
+}
+pacman()
+{
+    case $1 in
+        -S | -D | -S[^sih]* | -R* | -U*)
+            /usr/bin/sudo /usr/bin/pacman "$@" ;;
+    *)      /usr/bin/pacman "$@" ;;
+    esac
+}
+a=mpd b=ncmpcpp
+build=~/.config
+build2=~/.local/share
+build3=/usr/share/doc/ncmpcpp
+sourcegit=https://raw.githubusercontent.com/c4tzz/dotfiles/master
+mkdir -p ~/{Music,Playlists,Lyrics} && mkdir -p $build/{$a,$b}
+mkc $build2/$a
+touch $a.{db,log,pid,state} && touch sticker.sql && cd ..
+pacman -S --noconfirm --noprogressbar --quiet $a $b  2>>/dev/null
+wget -q $sourcegit/mpd.conf
+mv mpd.conf $build/$a
+cp $build3/{bindings,config} $build/$b
+sleep 2 && echo -e "\
+${RED}Done${NC} ..."
+
+
+
+
+
