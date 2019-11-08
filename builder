@@ -7,7 +7,7 @@ qvm-run -a qubes-builder gnome-terminal
 sudo dnf install git createrepo rpm-build make wget rpmdevtools dialog 
 rpm-sign gnupg dpkg-dev debootstrap python2-sh perl-Digest-MD5 perl-Digest-SHA
 
-qvm-create --class AppVM --label blue --property virt_mode=pvh builder
+qvm-create --class AppVM --template qubes-builder --label blue --property virt_mode=pvh builder
 qvm-volume extend builder:private 30g
 
 qvm-run -a builder gnome-terminal
@@ -25,7 +25,7 @@ git clone git://github.com/QubesOS/qubes-builder.git
 cd qubes-builder
 git tag -v `git describe`
 mkdir -p keyrings/git
-cp ~/.gnupg/pubring.gpg ~/.gnupg/trustdb.gpg keyrings/git
+cp ~/.gnupg/pubring.kbx ~/.gnupg/trustdb.gpg keyrings/git
 
 ===========================================================
                     xenial template
