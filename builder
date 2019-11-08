@@ -4,8 +4,8 @@
 
 qvm-clone fedora-30 qubes-builder
 qvm-run -a qubes-builder gnome-terminal
-sudo dnf install git createrepo rpm-build make wget rpmdevtools dialog rpm-sign
-rpmsign gnupg dpkg-dev debootstrap python2-sh perl-Digest-MD5 perl-Digest-SHA
+sudo dnf install git createrepo rpm-build make wget rpmdevtools dialog \
+  rpm-sign gnupg dpkg-dev debootstrap python2-sh perl-Digest-MD5 perl-Digest-SHA
 
 qvm-create --class AppVM --label blue --property virt_mode=pvh builder
 qvm-volume extend builder:private 30g
