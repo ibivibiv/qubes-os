@@ -19,3 +19,5 @@ qubes-2019-11-01T201258-void-password-1234
 qubes-2019-11-01T184650-gentoo-password-1234 
 
 3. archlinux-template (738 MB)
+
+qubes-2019-11-01T195834-archlinux-password-1234
