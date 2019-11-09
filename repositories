@@ -15,3 +15,6 @@ ubuntulinux
 
 https://github.com/fepitre/qubes-template-kali
 kalilinux
+
+https://github.com/jmitchell/qubes-builder-nixos
+nixos
