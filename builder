@@ -99,7 +99,7 @@ changed from "1.20.0" to "1.21.0"
 BUILD
 ------------------------------------------
 
-Run `make install-deps && make get-sources && make qubes-vm`
+Run `make install-deps && make get-sources && make qubes-vm && make template`
 
 The qubes repository with archlinux binaries has its pgp signature expired 
 for over 2 months so Qubes- stuff does not upgrade from within template. 
