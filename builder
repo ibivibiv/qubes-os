@@ -50,9 +50,17 @@ make qubes-vm
 Archlinux template seems to be fully working and building completely but 
 requires minor changes: 
 
-run ./setup 
+
+CONFIGURE THE BUILDER
+------------------------------------------
+
+Run `./setup` 
 release 4.0 stable 
 select archlinux 
+
+
+EDIT SOME CONFIGURATION FILES
+------------------------------------------
 
 edit the file 
 qubes-src/builder-archlinux/scripts/04_install_qubes.sh 
@@ -88,7 +96,10 @@ within the same file edit line 62:
 
 changed from "1.20.0" to "1.21.0" 
 
-and that would be it. Builds. 
+BUILD
+------------------------------------------
+
+Run `make install-deps && make get-sources && make qubes-vm`
 
 The qubes repository with archlinux binaries has its pgp signature expired 
 for over 2 months so Qubes- stuff does not upgrade from within template. 
