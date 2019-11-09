@@ -64,8 +64,7 @@ su -c 'echo "[qubes] " >> $INSTALLDIR/etc/pacman.conf'
 su -c 'echo " #QubesTMP" >> $INSTALLDIR/etc/pacman.conf' 
 su -c 'echo "SigLevel = Optional TrustAll " >> $INSTALLDIR/etc/pacman.conf' 
 su -c 'echo " #QubesTMP" >> $INSTALLDIR/etc/pacman.conf' 
-su -c 'echo "Server = file:///tmp/qubes-packages-mirror-repo/pkgs " >> 
-$INSTALLDIR/etc/pacman.conf' 
+su -c 'echo "Server = file:///tmp/qubes-packages-mirror-repo/pkgs " >> $INSTALLDIR/etc/pacman.conf' 
 su -c 'echo " #QubesTMP" >> $INSTALLDIR/etc/pacman.conf' 
 
 The build script has some problem with #comments. 
